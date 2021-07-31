@@ -43,6 +43,9 @@ body {
     width: 100px;
     height: 100px
 }
+.card .back{
+    display: none;
+}
 @media (max-width: 600px){
     body{
         background-color: black;
