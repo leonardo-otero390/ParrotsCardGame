@@ -55,6 +55,15 @@ function resetCards() {
 function finalGame() {
     if (finalCondition === cardsNumber) {
         alert(`Você ganhou em ${playsCounter} jogadas! em ${time} segundos`)
+        let resetGame = prompt("Bora jogar de novo?");
+        if (resetGame === 'sim') {
+            document.querySelector(".game-table").innerHTML = "";
+            playsCounter = 0;
+            finalCondition = 0;
+            time = 0;
+            numberOfCards();
+            cardDealer();
+        }
     }
 }
 function rotateCard(element) {
@@ -81,10 +90,10 @@ function rotateCard(element) {
 
     }
 }
-function timer (){
-    time ++;
+function timer() {
+    time++;
     document.querySelector(".stop-clock").innerHTML = time;
 }
 numberOfCards();
 cardDealer();
-setInterval(timer,1000);
+setInterval(timer, 1000);
