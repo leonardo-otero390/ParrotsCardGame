@@ -12,6 +12,7 @@ let cardsRotateds = 0;
 let cardsRAM = [];
 let playsCounter = 0;
 let finalCondition = 0;
+let time = 0;
 function numberOfCards() {
     cardsNumber = Number(prompt("Insira o número de cartas para o game"));
     let itsPair = cardsNumber % 2;
@@ -53,7 +54,7 @@ function resetCards() {
 }
 function finalGame() {
     if (finalCondition === cardsNumber) {
-        alert(`Você ganhou em ${playsCounter} jogadas!`)
+        alert(`Você ganhou em ${playsCounter} jogadas! em ${time} segundos`)
     }
 }
 function rotateCard(element) {
@@ -80,5 +81,10 @@ function rotateCard(element) {
 
     }
 }
+function timer (){
+    time ++;
+    document.querySelector(".stop-clock").innerHTML = time;
+}
 numberOfCards();
 cardDealer();
+setInterval(timer,1000);

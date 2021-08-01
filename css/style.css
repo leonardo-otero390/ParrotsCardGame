@@ -6,7 +6,20 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #eef9bf;
 }
-
+.stop-clock{
+    font-size: 56px;
+    color: seashell;
+    background-color: rgba(12, 12, 12, 0.404);
+    border-radius: 8px;
+    width: 100px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 5%;
+    right: 24px;
+}
 .game-name {
     font-size: 56px;
     margin: 40px auto;
@@ -76,10 +89,10 @@ body {
 }
 
 @media (max-width: 600px) {
-    body {
-        background-color: black;
+    .stop-clock{
+        position: initial;
+        margin: 0 auto;
     }
-
     .game-table {
         flex-direction: column;
         align-items: center;
