@@ -1,15 +1,17 @@
 const deckTotal = [
-     "bobrossparrot",
-     "explodyparrot",
-     "fiestaparrot",
-     "metalparrot",
-     "revertitparrot",
-     "tripletsparrot",
-     "unicornparrot",
+    "bobrossparrot",
+    "explodyparrot",
+    "fiestaparrot",
+    "metalparrot",
+    "revertitparrot",
+    "tripletsparrot",
+    "unicornparrot",
 ]
 let cardsNumber;
 let cardsRotateds = 0;
 let cardsRAM = [];
+let playsCounter = 0;
+let finalCondition = 0;
 function numberOfCards() {
     cardsNumber = Number(prompt("Insira o número de cartas para o game"));
     let itsPair = cardsNumber % 2;
@@ -29,7 +31,7 @@ function shufleCards() {
         deckGame.push(deckTotal[i]);
 
     }
-    
+
     return deckGame.sort(comparador);
 }
 function cardDealer() {
@@ -42,30 +44,40 @@ function cardDealer() {
     </div>`;
     }
 }
-function resetCards(){
-    for (let i =0;i<2;i++){
-        for(let j = 0;j<2;j++){
-        cardsRAM[i].card.querySelectorAll(".rotate")[0].classList.remove("rotate");
-    }
+function resetCards() {
+    for (let i = 0; i < 2; i++) {
+        for (let j = 0; j < 2; j++) {
+            cardsRAM[i].card.querySelectorAll(".rotate")[0].classList.remove("rotate");
         }
+    }
 }
-
-function rotateCard(element){
+function finalGame() {
+    if (finalCondition === cardsNumber) {
+        alert(`Você ganhou em ${playsCounter} jogadas!`)
+    }
+}
+function rotateCard(element) {
+    playsCounter++;
     cardsRAM[cardsRotateds] = {
         card: element,
-        name:element.querySelector(".back-face img").getAttribute("alt")
+        name: element.querySelector(".back-face img").getAttribute("alt")
     }
     element.querySelectorAll(".face")[0].classList.add("rotate");
     element.querySelectorAll(".face")[1].classList.add("rotate");
-    cardsRotateds ++;
-    if (cardsRotateds === 2){
-        if( cardsRAM[0].name !== cardsRAM[1].name){
-        setTimeout(resetCards,1000);}
-        setTimeout(function(){
+    cardsRotateds++;
+    if (cardsRotateds === 2) {
+        if (cardsRAM[0].name !== cardsRAM[1].name) {
+            setTimeout(resetCards, 1000);
+        } else {
+            finalCondition += 2;
+            setTimeout(finalGame, 300);
+
+        }
+        setTimeout(function () {
             cardsRAM = [];
             cardsRotateds = 0;
-        },1100)
-        
+        }, 1100)
+
     }
 }
 numberOfCards();
