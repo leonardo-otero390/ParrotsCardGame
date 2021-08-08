@@ -40,8 +40,8 @@ function cardDealer() {
     let element = document.querySelector(".game-table");
     for (let i = 0; i < cardsNumber; i++) {
         element.innerHTML += `<div class="card" onclick="rotateCard(this);">
-        <div class="front-face face" ><img src="/images/front.png" alt="parrot"></div>
-        <div class="back-face face"><img src="/gifs/${deckGame[i]}.gif" alt="${deckGame[i]}"></div>
+        <div class="front-face face" ><img src="images/front.png" alt="parrot"></div>
+        <div class="back-face face"><img src="gifs/${deckGame[i]}.gif" alt="${deckGame[i]}"></div>
     </div>`;
     }
 }
