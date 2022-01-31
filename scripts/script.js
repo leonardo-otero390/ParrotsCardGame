@@ -7,13 +7,16 @@ const deckTotal = [
   "tripletsparrot",
   "unicornparrot",
 ];
+let cardsRAM = [];
+const ranking = [];
+let playerName;
 let cardsNumber;
 let cardsRotateds = 0;
-let cardsRAM = [];
 let playsCounter = 0;
 let finalCondition = 0;
 let time = 0;
-function numberOfCards() {
+function startGame() {
+  playerName = prompt("Qual seu nome?");
   cardsNumber = Number(prompt("Insira o número de cartas para o game"));
   let itsPair = cardsNumber % 2;
   while (cardsNumber < 4 || cardsNumber > 14 || itsPair != 0) {
@@ -55,16 +58,57 @@ function resetCards() {
     }
   }
 }
+function registerOnRanking() {
+  const thisGameScore = {
+    playerName,
+    cardsNumber,
+    playsCounter,
+    time,
+  };
+  ranking.push(thisGameScore);
+  ranking.sort((a, b) => {
+    if (a.cardsNumber > b.cardsNumber) {
+      return -1;
+    } else if (a.cardsNumber !== b.cardsNumber) {
+      return 1;
+    }
+    if (a.playsCounter > b.playsCounter) {
+      return 1;
+    } else if (a.playsCounter !== b.playsCounter) {
+      return -1;
+    }
+    if (a.time > b.time) {
+      return 1;
+    } else if (a.time !== b.time) {
+      return -1;
+    }
+  });
+}
+
+function displayRanking() {
+  const element = document.querySelector(".ranking-table");
+  element.innerHTML = "";
+  ranking.forEach((game, i) => {
+    element.innerHTML += `<h1>${game.playerName} está em ${
+      i + 1
+    }° com um jogo de ${game.cardsNumber} e ${game.playsCounter} jogadas em ${
+      game.time
+    } segundos</h1>`;
+  });
+}
+
 function finalGame() {
   if (finalCondition === cardsNumber) {
     alert(`Você ganhou em ${playsCounter} jogadas! em ${time} segundos`);
+    registerOnRanking();
+    displayRanking();
     const resetGame = prompt("Bora jogar de novo?");
     if (resetGame === "sim") {
       document.querySelector(".game-table").innerHTML = "";
       playsCounter = 0;
       finalCondition = 0;
       time = 0;
-      numberOfCards();
+      startGame();
       cardDealer();
     }
   }
@@ -96,6 +140,7 @@ function timer() {
   time++;
   document.querySelector(".stop-clock").innerHTML = time;
 }
-numberOfCards();
+displayRanking();
+startGame();
 cardDealer();
 setInterval(timer, 1000);
