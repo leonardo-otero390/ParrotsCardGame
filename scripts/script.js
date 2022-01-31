@@ -91,7 +91,7 @@ function displayRanking() {
   ranking.forEach((game, i) => {
     element.innerHTML += `<h1>${game.playerName} está em ${
       i + 1
-    }° com um jogo de ${game.cardsNumber} e ${game.playsCounter} jogadas em ${
+    }° com um jogo de ${game.cardsNumber} cartas e ${game.playsCounter} jogadas em ${
       game.time
     } segundos</h1>`;
   });
