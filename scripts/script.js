@@ -70,7 +70,7 @@ function finalGame() {
   }
 }
 function rotateCard(element) {
-  if (cardsRotateds === 2) return;
+  if (cardsRotateds === 2 || element.querySelector(".rotate")) return;
   playsCounter++;
   cardsRAM[cardsRotateds] = {
     card: element,
