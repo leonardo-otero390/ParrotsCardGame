@@ -26,7 +26,7 @@ function comparador() {
 }
 function shufleCards() {
     deckTotal.sort(comparador);
-    let deckGame = [];
+    const deckGame = [];
     for (let i = 0; i < (cardsNumber / 2); i++) {
         deckGame.push(deckTotal[i]);
         deckGame.push(deckTotal[i]);
@@ -37,10 +37,10 @@ function shufleCards() {
 }
 function cardDealer() {
     const deckGame = shufleCards();
-    let element = document.querySelector(".game-table");
+    const element = document.querySelector(".game-table");
     for (let i = 0; i < cardsNumber; i++) {
         element.innerHTML += `<div class="card" onclick="rotateCard(this);">
-        <div class="front-face face" ><img src="images/front.png" alt="parrot"></div>
+        <div class="front-face face"><img src="images/front.png" alt="parrot"></div>
         <div class="back-face face"><img src="gifs/${deckGame[i]}.gif" alt="${deckGame[i]}"></div>
     </div>`;
     }
@@ -55,7 +55,7 @@ function resetCards() {
 function finalGame() {
     if (finalCondition === cardsNumber) {
         alert(`Você ganhou em ${playsCounter} jogadas! em ${time} segundos`)
-        let resetGame = prompt("Bora jogar de novo?");
+        const resetGame = prompt("Bora jogar de novo?");
         if (resetGame === 'sim') {
             document.querySelector(".game-table").innerHTML = "";
             playsCounter = 0;
